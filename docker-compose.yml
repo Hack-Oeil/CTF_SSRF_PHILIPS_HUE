@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  webserver:
+    build: server_1/
+    ports:
+      - "80:80"
+    image: blog_ssrf
+    container_name: blog-ssrf
+    networks:
+      my_ssrf_network:
+        ipv4_address: 172.20.0.11
+  webserver2:
+    build: server_2/
+    image: light_ssrf
+    container_name: light-ssrf
+    networks:
+      my_ssrf_network:
+        ipv4_address: 172.20.0.12
+networks:
+  my_ssrf_network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
