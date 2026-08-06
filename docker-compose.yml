@@ -1,18 +1,40 @@
 services:
   webserver:
-    build: ./.docker/server_1/
+    build:
+      context: ./.docker/server_http
+      args:
+        TIMEZONE: ${TIMEZONE}
+    environment:
+      - HOOS_CTF_EMAIL=${HOOS_CTF_EMAIL:-}
+      - HOOS_CTF_USERNAME=${HOOS_CTF_USERNAME:-}
+      - LANGUAGE=${LANGUAGE:-fr}
+    labels:
+      ho.ctf.cyrhades: "challenge"
     ports:
       - ${PORT}:80
-    image: blog_ssrf
+    restart: always
+    volumes:
+      - web:/var/www/html
     networks:
       my_ssrf_network:
         ipv4_address: 172.20.0.11
+  composer:
+    image: composer
+    volumes:
+      - web:/app
+    command: composer install --ignore-platform-req='ext-*'
   webserver2:
     build: ./.docker/server_2/
     image: light_ssrf
+    labels:
+      ho.ctf.cyrhades: "1"
     networks:
       my_ssrf_network:
         ipv4_address: 172.20.0.12
+volumes:
+  web:
+    labels:
+      ho.ctf.cyrhades: "1"
 networks:
   my_ssrf_network:
     ipam:

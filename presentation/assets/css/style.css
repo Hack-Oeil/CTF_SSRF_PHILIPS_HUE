@@ -219,3 +219,18 @@ h6 {
     color:#999;
 }
 #landing-footer i { color:#999; }
+
+/* RTL Support for Arabic */
+html[dir="rtl"] {
+    direction: rtl !important;
+    text-align: right !important;
+}
+html[dir="rtl"] [class*='col-'] {
+    float: right;
+}
+html[dir="rtl"] .text-left {
+    text-align: right;
+}
+html[dir="rtl"] .text-right {
+    text-align: left;
+}

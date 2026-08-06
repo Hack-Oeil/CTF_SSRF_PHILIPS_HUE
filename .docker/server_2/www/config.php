@@ -7,7 +7,7 @@ if(sizeof($_POST)) {
             $apiKey = $_POST['apikey'];
 
             foreach($_POST['lights'] as $light) {
-                $data .= "light('http://$host/api/$apiKey/lights/$light/state','#0000ff');".PHP_EOL;
+                $data .= "light('http://$host/api/$apiKey/lights/$light/state');".PHP_EOL;
             }
             file_put_contents('index.php', str_replace('{{ CALL_ACTION }}', $data, file_get_contents('index_base.php')));
             exit('ok');

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% if flag %}
+<div class="flag-container">
+    <div>
+        <!-- Glow effects -->
+        <div class="glow-effect glow-green"></div>
+        <div class="glow-effect glow-blue"></div>
+        
+        <div class="flag-content">
+            <h3 class="flag-title">
+                <svg class="flag-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                {{ __('Bien joué le flag est :') }}
+            </h3>
+            <p>
+            {% if on == '1' %}
+                {{ __('Vous avez réussi à allumer la lumière de mon salon.') }}
+            {% elseif on == '2' %}
+                {{ __('Vous avez réussi, mais la lumière de mon salon était déjà allumée.') }}
+            {% endif %}
+            </p>
+            <div class="flag-box">
+                <span class="flag-text">
+                    {{ flag }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+
+<h2>{{ __('Formulaire de contact') }}</h2>
+
+{% if success|default(false) %}
+    <div class="alert alert-success">
+        {{ success }}
+    </div>
+{% endif %}
+
+{% if error|default(false) %}
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
+{% endif %}
+
+<form action="/contact" method="post">
+    <input type="hidden" name="serverMail" value="smtp://localhost:465">
+
+    <label>
+        {{ __('Nom :') }}
+        <input type="text" name="name" required>
+    </label>
+
+    <label>
+        {{ __('Message :') }}
+        <textarea name="message" required></textarea>
+    </label>
+
+    <input type="submit" value="{{ __('Envoyer') }}">
+</form>
+{% endif %}
+{% endblock %}

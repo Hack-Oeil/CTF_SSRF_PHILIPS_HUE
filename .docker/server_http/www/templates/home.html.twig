@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="home-container">
+    <div class="home-text">
+        <h2>{{ __('Bienvenue sur mon blog !') }}</h2>
+        <p>{{ __('Je viens de débuter en programmation. Je ne suis pas encore très bon, mais j’aime ça et j’ai envie de progresser.') }}</p>
+        <p>{{ __('Je me suis lancé un défi : créer un projet de domotique. Mon objectif est de pouvoir gérer depuis mon téléphone mes lumières, mes stores électriques et ma climatisation.') }}</p>
+        <p>{{ __('Pour l’instant, j’ai uniquement travaillé sur l’allumage des lumières, et je suis déjà content du résultat !') }}</p>
+        <p>{{ __('Voici un schéma que j’ai préparé pour mon projet domotique. Je suis très organisé et j’aime partager mon travail avec des inconnus ^^') }}</p>
+        <p><strong>{{ __('N’hésitez pas à me contacter pour en discuter.') }}</strong></p>
+    </div>
+
+    <div class="home-diagram">
+        <div class="network-diagram">
+            <div class="servers">
+                <div class="server node-main">
+                    <div class="ip">172.20.0.11</div>
+                    <div class="icon">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="services">
+                        <div>{{ __('Mon serveur HTTP') }} <span>(80)</span></div>
+                        <div>{{ __('Mon serveur SMTP') }} <span>(465)</span></div>
+                    </div>
+                </div>
+
+                <div class="server node-light">
+                    <div class="ip">172.20.0.12</div>
+                    <div class="icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div class="services">
+                        <div>{{ __('Serveur Lumière') }} <span>(8080)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="future-box">
+                <h3>{{ __('Autres serveurs domotiques en cours de déploiement') }}</h3>
+                <div class="future-servers">
+                    <div class="server small">
+                        <div class="icon">
+                            <i class="fa-solid fa-person-shelter"></i>
+                        </div>
+                        <div>{{ __('Volets roulants') }}</div>
+                    </div>
+
+                    <div class="server small">
+                        <div class="icon">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+                        <div>{{ __('Thermostat') }}</div>
+                    </div>
+
+                    <div class="server small">
+                        <div class="icon">
+                            <i class="fa-solid fa-house-signal"></i>
+                        </div>
+                        <div>
+                            {{ __('Domotique extérieur') }}<br>
+                            <small>({{ __('portail, arrosage, garage, ...') }})</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

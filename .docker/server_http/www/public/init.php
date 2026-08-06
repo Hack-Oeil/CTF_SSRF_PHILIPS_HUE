@@ -20,8 +20,12 @@ if(sizeof($_POST)) {
             $result = curl_exec($ch);
             curl_close($ch);
             if($result == 'ok') {
-                file_put_contents(__DIR__.'/config_ok', "");
-                header("location:index.php");
+                if(@file_put_contents(__DIR__.'/config_ok', "") !== false) {
+                    header("location:index.php");
+                    exit();
+                } else {
+                    $messageError = 'Impossible d\'écrire le fichier /var/www/html/public/config_ok : permission refusée !';
+                }
             } else {
                 $messageError = 'Le serveur lumiere du challenge n\'a pas réussi à créer le script souhaité !';
             }
