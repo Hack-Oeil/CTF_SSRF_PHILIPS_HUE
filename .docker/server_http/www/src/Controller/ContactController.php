@@ -47,8 +47,7 @@ class ContactController extends AbstractController
                 $error = __('Tout les champs sont obligatoire');
             }
         }
-        // La faille SSRF sera implémentée ici par le créateur du challenge
-        // Redirection ou affichage après soumission
+
         return $this->render('contact', ['error' => $error, 'success' => $success, 'flag' => $flag, 'on' => $on]);
     }
 }

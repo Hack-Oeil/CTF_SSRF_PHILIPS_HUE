@@ -9,8 +9,15 @@ if(sizeof($_POST)) {
             foreach($_POST['lights'] as $light) {
                 $data .= "light('http://$host/api/$apiKey/lights/$light/state');".PHP_EOL;
             }
-            file_put_contents('index.php', str_replace('{{ CALL_ACTION }}', $data, file_get_contents('index_base.php')));
-            exit('ok');
+            $base = file_get_contents('index_base.php');
+            if ($base !== false) {
+                $content = str_replace('{{ CALL_ACTION }}', $data, $base);
+                $bytes = file_put_contents('index.php', $content);
+                if ($bytes !== false && file_exists('index.php') && filesize('index.php') > 0) {
+                    exit('config_written_ok');
+                }
+            }
         }
     }
 }
+exit('error');

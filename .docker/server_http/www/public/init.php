@@ -19,7 +19,7 @@ if(sizeof($_POST)) {
             curl_setopt_array($ch,$defaults);
             $result = curl_exec($ch);
             curl_close($ch);
-            if($result == 'ok') {
+            if(trim($result) === 'config_written_ok') {
                 if(@file_put_contents(__DIR__.'/config_ok', "") !== false) {
                     header("location:index.php");
                     exit();
