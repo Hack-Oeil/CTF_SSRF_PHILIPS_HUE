@@ -1,4 +1,4 @@
-FROM php:8.0
+FROM php:8.4
 WORKDIR /home/
 
 COPY ./www .
