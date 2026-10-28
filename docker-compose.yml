@@ -23,6 +23,8 @@ services:
     volumes:
       - web:/app
     command: composer install --ignore-platform-req='ext-*'
+    networks:
+      - my_ssrf_network
   webserver2:
     build: ./.docker/server_2/
     image: light_ssrf
